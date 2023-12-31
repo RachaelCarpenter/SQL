@@ -75,4 +75,10 @@ GROUP BY industry
 HAVING avg_paid_time_off_days >= 21
 AND avg_industry_employee_tenure >= 5
 
-#Categorizes companies as small, midsized, or large based on their revenue and number of employees.
+#Categorizes companies as small, midsized, or large based on their revenue or number of employees.
+SELECT company_name 
+,CASE WHEN revenue >= 500 OR employees >= 1000000 THEN 'large'
+ WHEN revenue >= 250 OR employees >=500000 THEN 'mid-size'
+ ELSE 'small'
+ END AS company_size
+FROM fortune_companies

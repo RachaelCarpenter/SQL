@@ -40,7 +40,7 @@ GROUP BY category;
 #Shows the average ratings in the Electronics category from highest to lowest in relation to price.
 SELECT average_rating, item_name, price
 FROM superstore
-WHERE category='Electronics'
+WHERE category = 'Electronics'
 ORDER BY average_rating desc;
 
 #Shows the item with the most in stock.
@@ -50,4 +50,4 @@ FROM superstore;
 #Shows how many different types of appliances are available for purchase.
 SELECT COUNT(item_name)
 FROM superstore
-WHERE category='Appliances';
+WHERE category = 'Appliances';

@@ -59,11 +59,11 @@ VALUES
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
 
-#Answers what companies have healthcare benefits and maternity leave of eight weeks or longer.
+#Answers what companies have healthcare benefits and maternity leave of 12 weeks or longer.
 SELECT company_name, maternity_leave_weeks
 FROM fortune_companies
 WHERE healthcare_benefits=1
-AND maternity_leave_weeks>=8
+AND maternity_leave_weeks>=12
 ORDER BY maternity_leave_weeks desc
 
 #Suggests what industries have good work-life balance and happy employees.
@@ -82,3 +82,18 @@ SELECT company_name
  ELSE 'small'
  END AS company_size
 FROM fortune_companies
+
+#Shows information about the top five companies in the technology industry with the longest employee tenures.
+SELECT *
+FROM fortune_companies
+WHERE industry = 'Technology'
+ORDER BY avg_employee_tenure desc
+LIMIT 5
+
+#Shows the top three industries with the highest revenues.
+SELECT industry
+,ROUND(AVG(revenue), 2) AS avg_industry_revenue
+FROM fortune_companies
+GROUP BY industry
+ORDER BY avg_industry_revenue desc
+LIMIT 3

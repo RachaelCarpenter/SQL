@@ -1,4 +1,4 @@
-#This project utilizes the following superstore data:
+#This analysis utilizes the following superstore data:
 
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
@@ -29,25 +29,25 @@ VALUES
 
 
 #Shows the total inventory valuation of the superstore.
-SELECT SUM(price)
+SELECT ROUND(SUM(price), 2) AS inventory_valuation
 FROM superstore;
 
 #Shows inventory valuation by category.
-SELECT ROUND(SUM(price), 2), category
+SELECT category, ROUND(SUM(price), 2) AS inventory_valuation
 FROM superstore
 GROUP BY category;
 
 #Shows the average ratings in the Electronics category from highest to lowest in relation to price.
-SELECT average_rating, item_name, price
+SELECT item_name, average_rating, price
 FROM superstore
 WHERE category = 'Electronics'
 ORDER BY average_rating desc;
 
 #Shows the item with the most in stock.
-SELECT MAX(stock_quantity), item_name
-FROM superstore;
+SELECT item_name, MAX(stock_quantity) AS most_in_stock
+FROM superstore
 
 #Shows how many different types of appliances are available for purchase.
-SELECT COUNT(item_name)
+SELECT category, COUNT(item_name) AS different_items
 FROM superstore
 WHERE category = 'Appliances';

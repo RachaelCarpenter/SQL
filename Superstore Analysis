@@ -45,7 +45,7 @@ ORDER BY average_rating desc;
 
 #Shows the item with the most in stock.
 SELECT item_name, MAX(stock_quantity) AS most_in_stock
-FROM superstore
+FROM superstore;
 
 #Shows how many different types of appliances are available for purchase.
 SELECT category, COUNT(item_name) AS different_items

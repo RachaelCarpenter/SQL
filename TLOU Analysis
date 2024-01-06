@@ -1,0 +1,22 @@
+CREATE TABLE TLOU_actors (
+    id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    number_of_roles INTEGER,
+    birthplace TEXT,
+    age INTEGER,
+    ethnicity TEXT,
+    net_worth INTEGER,
+    resident_of TEXT,
+    spouse_id INTEGER
+);
+
+INSERT INTO TLOU_actors (id, first_name, last_name, number_of_roles, birthplace, age, ethnicity, net_worth, resident_of, spouse_id)
+    VALUES 
+    (1, "Pedro", "Pascal", 20, "Santiago, Chile", 48, "Chilean-American", 10000000, "Los Angeles", NULL),
+    (2, "Nick", "Offerman", 49, "Joliet, IL", 53, "American", 25000000, "Los Angeles", 4),
+    (3, "Bella", "Ramsey", 7, "Nottingham, UK", 20, "English", 2000000, "London, UK", NULL),
+    (4, "Megan Mullally", "Parker", 20, "London, UK", 19, "English", 50000, "London, UK", 2);
+    
+SELECT *
+FROM TLOU_actors

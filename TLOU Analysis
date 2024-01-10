@@ -60,7 +60,7 @@ VALUES
     (8, "Merle Dandridge", 48, "Female", 68, 6);
 
 
-#Shows the actors that have voiced a character in the game, and played a character in the show. Lists the voiced character and acted character.
+#Shows the actors that have voiced a character in the game, and played a character in the show. Lists the voiced and acted characters.
 SELECT actors.name AS actor_name, b.name AS voiced_character, a.name AS acted_character
 FROM actors
 JOIN characters a

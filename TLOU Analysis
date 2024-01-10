@@ -1,31 +1,35 @@
+#This analysis utilizes the following data from The Last of Us:
+
 CREATE TABLE characters (id INTEGER PRIMARY KEY,
     name TEXT,
     age INTEGER,
     gender TEXT,
-    relationship TEXT,
+    partner_id INTEGER,
     resides TEXT,
     occupation TEXT);
     
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (1, "Ellie Williams", 14, "Female", "Dina", "Jackson, WY", "Factory Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (2, "Dina", 16, "Female", "Ellie", "Jackson, WY", "Security Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (3, "Joel Miller", 52, "Male", "Tess", "Jackson, WY", "Security Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (4, "Tess", 48, "Female", "Joel", "Jackson, WY", "Factory Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (5, "Tommy Miller", 48, "Female", "Joel", "Jackson, WY", "Factory Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (6, "Marlene", 16, "Female", "Ellie", "Jackson, WY", "Factory Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (7, "Riley", 16, "Female", "Ellie", "Jackson, WY", "Factory Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (8, "James", 16, "Female", "Ellie", "Jackson, WY", "Factory Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (9, "Anna", 16, "Female", "Ellie", "Jackson, WY", "Factory Worker");
-INSERT INTO characters (id, name, age, gender, relationship, resides, occupation)
-    VALUES (10, "Perry", 16, "Female", "Ellie", "Jackson, WY", "Factory Worker");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (1, "Ellie Williams", 19, "Female", 2, "Jackson, WY", "Jackson Patrolman");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (2, "Dina", 20, "Female", 1, "Jackson, WY", "Jackson Patrolman");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (3, "Joel Miller", 56, "Male", 4, "Jackson, WY", "Jackson Patrolman");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (4, "Tess", 51, "Female", 3, "Boston, MA", "Smuggler");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (5, "Tommy Miller", 50, "Male", 11, "Jackson, WY", "Jackson Patrolman");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (6, "Marlene", 45, "Female", 10, "Salt Lake City, UT", "Fireflies Leader");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (7, "Riley Abel", 16, "Female", 1, "Boston, MA", "Firefly");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (8, "James", 45, "Male", "NULL", "Silver Lake, CO", "Cannibal");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (9, "Anna", 40, "Female", "NULL", "Boston, MA", "Nurse");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (10, "Perry", 52, "Male", 6, "Kansas City, MO", "Rebel Lieutenant");
+INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
+    VALUES (11, "Maria Miller", 45, "Female", 5, "Jackson, WY", "Jackson Leader");
     
 
 CREATE TABLE voice_actors (id INTEGER PRIMARY KEY,
@@ -50,28 +54,43 @@ CREATE TABLE actors (id INTEGER PRIMARY KEY,
     character_id INTEGER);
     
 INSERT INTO actors (id, name, age, gender, height, character_id)
-    VALUES (1, "Bella Ramsey", 19, "Non-Binary", 60, 1);
+    VALUES (1, "Bella Ramsey", 20, "Non-Binary", 61, 1);
 INSERT INTO actors (id, name, age, gender, height, character_id)
-    VALUES (2, "Pedro Pascal", 48, "Male", 60, 3);
+    VALUES (2, "Pedro Pascal", 48, "Male", 71, 3);
 INSERT INTO actors (id, name, age, gender, height, character_id)
-    VALUES (3, "Annie Wersching", 19, "Female", 60, 4);
+    VALUES (3, "Annie Wersching", 45, "Female", 67, 4);
 INSERT INTO actors (id, name, age, gender, height, character_id)
-    VALUES (4, "Storm Reid", 22, "Female", 65, 7);
+    VALUES (4, "Storm Reid", 20, "Female", 67, 7);
 INSERT INTO actors (id, name, age, gender, height, character_id)
-    VALUES (5, "Troy Baker", 22, "Female", 65, 8);
+    VALUES (5, "Troy Baker", 47, "Male", 75, 8);
 INSERT INTO actors (id, name, age, gender, height, character_id)
-    VALUES (6, "Ashley Johnson", 22, "Female", 65, 9);
+    VALUES (6, "Ashley Johnson", 40, "Female", 64, 9);
 INSERT INTO actors (id, name, age, gender, height, character_id)
-    VALUES (7, "Jeffrey Pierce", 22, "Female", 65, 10);
+    VALUES (7, "Jeffrey Pierce", 52, "Male", 72, 10);
 INSERT INTO actors (id, name, age, gender, height, character_id)
-    VALUES (8, "Merle Dandridge", 22, "Female", 65, 6);
+    VALUES (8, "Merle Dandridge", 48, "Female", 68, 6);
 
 
-SELECT actors.name, b.name AS voiced_character, a.name AS acted_character
+#Shows the actors that have voiced a character in the game, and played a character in the show. Lists the voiced character and acted character.
+SELECT actors.name AS actor_name, b.name AS voiced_character, a.name AS acted_character
 FROM actors
 JOIN characters a
 ON a.id = actors.character_id
-JOIN voice_actors
-ON voice_actors.name = actors.name
 JOIN characters b
 ON voice_actors.character_id = b.id
+JOIN voice_actors
+ON voice_actors.name = actors.name;
+
+#Shows characters and their partners' names.
+SELECT a.name, b.name
+FROM characters a
+JOIN characters b
+ON a.partner = b.id;
+
+#Shows actors that are within three years of their character's age.
+SELECT actors.name
+FROM actors
+JOIN characters
+ON actors.character_id = characters.id
+WHERE actors.age <= (characters.age + 3)
+AND actors.age >= (characters.age - 3);

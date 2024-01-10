@@ -9,27 +9,18 @@ CREATE TABLE characters (id INTEGER PRIMARY KEY,
     occupation TEXT);
     
 INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (1, "Ellie Williams", 19, "Female", 2, "Jackson, WY", "Jackson Patrolman");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (2, "Dina", 20, "Female", 1, "Jackson, WY", "Jackson Patrolman");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (3, "Joel Miller", 56, "Male", 4, "Jackson, WY", "Jackson Patrolman");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (4, "Tess", 51, "Female", 3, "Boston, MA", "Smuggler");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (5, "Tommy Miller", 50, "Male", 11, "Jackson, WY", "Jackson Patrolman");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (6, "Marlene", 45, "Female", 10, "Salt Lake City, UT", "Fireflies Leader");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (7, "Riley Abel", 16, "Female", 1, "Boston, MA", "Firefly");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (8, "James", 45, "Male", "NULL", "Silver Lake, CO", "Cannibal");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (9, "Anna", 40, "Female", "NULL", "Boston, MA", "Nurse");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (10, "Perry", 52, "Male", 6, "Kansas City, MO", "Rebel Lieutenant");
-INSERT INTO characters (id, name, age, gender, partner_id, resides, occupation)
-    VALUES (11, "Maria Miller", 45, "Female", 5, "Jackson, WY", "Jackson Leader");
+VALUES 
+    (1, "Ellie Williams", 19, "Female", 2, "Jackson, WY", "Jackson Patrolman"),
+    (2, "Dina", 20, "Female", 1, "Jackson, WY", "Jackson Patrolman"),
+    (3, "Joel Miller", 56, "Male", 4, "Jackson, WY", "Jackson Patrolman"),
+    (4, "Tess", 51, "Female", 3, "Boston, MA", "Smuggler"),
+    (5, "Tommy Miller", 50, "Male", 11, "Jackson, WY", "Jackson Patrolman"),
+    (6, "Marlene", 45, "Female", 10, "Salt Lake City, UT", "Fireflies Leader"),
+    (7, "Riley Abel", 16, "Female", 1, "Boston, MA", "Firefly"),
+    (8, "James", 45, "Male", "NULL", "Silver Lake, CO", "Cannibal"),
+    (9, "Anna", 40, "Female", "NULL", "Boston, MA", "Nurse"),
+    (10, "Perry", 52, "Male", 6, "Kansas City, MO", "Rebel Lieutenant"),
+    (11, "Maria Miller", 45, "Female", 5, "Jackson, WY", "Jackson Leader");
     
 
 CREATE TABLE voice_actors (id INTEGER PRIMARY KEY,

@@ -71,10 +71,10 @@ JOIN voice_actors
 ON voice_actors.name = actors.name;
 
 #Shows characters and their partners' names.
-SELECT a.name, b.name
+SELECT a.name, b.name AS partner_name
 FROM characters a
 JOIN characters b
-ON a.partner = b.id;
+ON a.partner_id = b.id;
 
 #Shows actors that are within three years of their character's age.
 SELECT actors.name

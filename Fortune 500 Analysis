@@ -1,4 +1,4 @@
-#This analysis utilizes the following Fortune 500 data:
+/*This analysis utilizes the following Fortune 500 data:*/
 
 CREATE TABLE fortune_companies (
     company_id INTEGER PRIMARY KEY,
@@ -59,14 +59,14 @@ VALUES
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
 
-#Answers what companies have healthcare benefits and maternity leave of 12 weeks or longer.
+/*Answers what companies have healthcare benefits and maternity leave of 12 weeks or longer.*/
 SELECT company_name, maternity_leave_weeks
 FROM fortune_companies
 WHERE healthcare_benefits=1
 AND maternity_leave_weeks>=12
 ORDER BY maternity_leave_weeks desc;
 
-#Suggests what industries have good work-life balance and happy employees.
+/*Suggests what industries have good work-life balance and happy employees.*/
 SELECT industry
 ,ROUND(AVG(paid_time_off_days)) AS avg_paid_time_off_days
 ,ROUND(AVG(avg_employee_tenure)) AS avg_industry_employee_tenure
@@ -75,7 +75,7 @@ GROUP BY industry
 HAVING avg_paid_time_off_days >= 21
 AND avg_industry_employee_tenure >= 5;
 
-#Categorizes companies as small, midsized, or large based on their revenue or number of employees.
+/*Categorizes companies as small, midsized, or large based on their revenue or number of employees.*/
 SELECT company_name 
 ,CASE WHEN revenue >= 500 OR employees >= 1000000 THEN 'large'
  WHEN revenue >= 250 OR employees >=500000 THEN 'mid-size'

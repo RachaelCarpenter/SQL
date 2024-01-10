@@ -1,4 +1,4 @@
-#This analysis utilizes the following data from The Last of Us:
+/*This analysis utilizes the following data from The Last of Us:*/
 
 CREATE TABLE characters (
     id INTEGER PRIMARY KEY,
@@ -27,16 +27,16 @@ VALUES
 
 CREATE TABLE voice_actors (
     id INTEGER PRIMARY KEY,
-    name TEXT,
+    actor_id INTEGER,
     character_id INTEGER
 );
     
-INSERT INTO voice_actors (id, name, character_id)
+INSERT INTO voice_actors (id, actor_id, character_id)
 VALUES 
-    (1, "Troy Baker", 3),
-    (2, "Ashley Johnson", 1),
-    (3, "Jeffrey Pierce", 5),
-    (4, "Merle Dandridge", 6);
+    (1, 5, 3),
+    (2, 6, 1),
+    (3, 7, 5),
+    (4, 8, 6);
     
     
 CREATE TABLE actors (
@@ -60,23 +60,23 @@ VALUES
     (8, "Merle Dandridge", 48, "Female", 68, 6);
 
 
-#Shows the actors that have voiced a character in the game, and played a character in the show. Lists the voiced and acted characters.
-SELECT actors.name AS actor_name, b.name AS voiced_character, a.name AS acted_character
-FROM actors
+/*Shows the actors that have voiced a character in the game, and played a character in the show. Lists the voiced character and acted character.*/
+SELECT actors.name, a.name AS voiced_character, b.name AS acted_character
+FROM voice_actors
+JOIN actors
+ON actors.id = voice_actors.actor_id
 JOIN characters a
-ON a.id = actors.character_id
+ON voice_actors.character_id = a.id
 JOIN characters b
-ON voice_actors.character_id = b.id
-JOIN voice_actors
-ON voice_actors.name = actors.name;
+ON actors.character_id = b.id;
 
-#Shows characters and their partners' names.
+/*Shows characters and their partners' names.*/
 SELECT a.name, b.name AS partner_name
 FROM characters a
 JOIN characters b
 ON a.partner_id = b.id;
 
-#Shows actors that are within three years of their character's age.
+/*Shows actors that are within three years of their character's age.*/
 SELECT actors.name
 FROM actors
 JOIN characters

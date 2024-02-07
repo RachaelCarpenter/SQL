@@ -1,3 +1,5 @@
+/*This analysis utilizes the following faux Netflix data:*/
+
 CREATE TABLE netflix_titles_info
     ("show_id" varchar(5), "type" varchar(7), "title" varchar(58), "country" varchar(74), "date_added" timestamp, "release_year" int, "rating" varchar(5), "duration" varchar(9), "listed_in" varchar(74))
 ;
@@ -57,20 +59,20 @@ VALUES
     ;
 
 
-Shows how many movie titles there are in the database.
+/*Shows how many movie titles there are in the database.*/
 SELECT COUNT(*)
 FROM "netflix_titles_info"
 
-Shows the most recent batch of TV shows and/or movies added to the database.
+/*Shows the most recent batch of TV shows and/or movies added to the database.*/
 SELECT MAX(DATE(date_added))
 FROM "netflix_titles_info";
 
-Lists all the movies and TV shows in alphabetical order.
+/*Lists all the movies and TV shows in alphabetical order.*/
 SELECT title
 FROM "netflix_titles_info"
 ORDER BY title;
 
-Shows who the director is for the movie, The Starling.
+/*Shows who the director is for the movie, The Starling.*/
 SELECT director, title
 FROM "netflix_titles_info" titles
 JOIN "netflix_people" people
@@ -78,7 +80,7 @@ ON titles.show_id = people.show_id
 WHERE title = 'The Starling';
 WHERE type = 'Movie';
 
-Shows the oldest movie in the database and what year it was made.
+/*Shows the oldest movie in the database and what year it was made.*/
 SELECT title, release_year
 FROM "netflix_titles_info" 
 ORDER BY release_year

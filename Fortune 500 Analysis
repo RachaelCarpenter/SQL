@@ -83,14 +83,14 @@ SELECT company_name
  END AS company_size
 FROM fortune_companies;
 
-#Shows information about the top five companies in the technology industry with the longest employee tenures.
+/*Shows information about the top five companies in the technology industry with the longest employee tenures.*/
 SELECT *
 FROM fortune_companies
 WHERE industry = 'Technology'
 ORDER BY avg_employee_tenure desc
 LIMIT 5;
 
-#Shows the top three industries with the highest revenues.
+/*Shows the top three industries with the highest revenues.*/
 SELECT industry
 ,ROUND(AVG(revenue), 2) AS avg_industry_revenue
 FROM fortune_companies

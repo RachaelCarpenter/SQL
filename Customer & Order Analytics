@@ -1,0 +1,51 @@
+querying a database with multiple tables in it to quantify statistics about customer and order data. 
+
+
+SELECT DISTINCT Product, Price
+FROM BIT_DB.JanSales
+ORDER BY Price
+LIMIT 1;
+
+SELECT COUNT(*)
+FROM BIT_DB.JanSales
+WHERE LENGTH(orderID) = 6;
+
+SELECT COUNT(*)
+FROM BIT_DB.JanSales
+WHERE Product = 'iPhone'
+AND LENGTH(orderID) = 6;
+
+SELECT DISTINCT acctnum
+FROM BIT_DB.customers
+JOIN BIT_DB.FebSales
+ON customers.order_id = FebSales.orderID
+WHERE LENGTH(orderID = 6);
+
+SELECT Product
+,ROUND(SUM(Quantity) * price, 2) AS Revenue
+FROM BIT_DB.JanSales 
+WHERE LENGTH(orderID) = 6
+GROUP BY Product;
+
+SELECT Product, Quantity
+,SUM(Quantity * price) AS Revenue
+FROM BIT_DB.FebSales
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+AND LENGTH(orderID) = 6;
+
+/*OR*/
+
+SELECT Product
+,SUM(Quantity)
+,SUM(Quantity) * price AS Revenue
+FROM BIT_DB.FebSales 
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+AND LENGTH(orderID) = 6
+GROUP BY Product;
+
+SELECT COUNT(DISTINCT(acctnum)), AVG(Quantity * price)
+FROM customers
+JOIN FebSales
+ON customers.order_id = FebSales.orderID
+WHERE Quantity > 2
+AND LENGTH(order_id) = 6;

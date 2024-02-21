@@ -26,15 +26,8 @@ SELECT Product
 ,ROUND(SUM(Quantity) * price, 2) AS Revenue
 FROM BIT_DB.JanSales 
 WHERE LENGTH(orderID) = 6
+AND orderID <> 'Order ID'
 GROUP BY Product;
-
-SELECT Product, Quantity
-,SUM(Quantity * price) AS Revenue
-FROM BIT_DB.FebSales
-WHERE location = '548 Lincoln St, Seattle, WA 98101'
-AND LENGTH(orderID) = 6;
-
-/*OR*/
 
 SELECT Product
 ,SUM(Quantity)

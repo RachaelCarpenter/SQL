@@ -16,7 +16,7 @@ AND orderID <> 'Order ID';
 SELECT COUNT(*)
 FROM BIT_DB.JanSales
 WHERE Product = 'iPhone'
-WHERE LENGTH(orderID) = 6
+AND LENGTH(orderID) = 6
 AND orderID <> 'Order ID';
 
 SELECT DISTINCT acctnum
@@ -39,7 +39,7 @@ SELECT Product
 FROM BIT_DB.FebSales 
 WHERE location = '548 Lincoln St, Seattle, WA 98101'
 AND LENGTH(orderID) = 6
-AND orderID <> 'Order ID';
+AND orderID <> 'Order ID'
 GROUP BY Product;
 
 SELECT COUNT(DISTINCT(acctnum)), AVG(Quantity * price)

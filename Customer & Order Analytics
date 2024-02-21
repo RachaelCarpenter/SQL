@@ -19,7 +19,8 @@ SELECT DISTINCT acctnum
 FROM BIT_DB.customers
 JOIN BIT_DB.FebSales
 ON customers.order_id = FebSales.orderID
-WHERE LENGTH(orderID = 6);
+WHERE LENGTH(orderID = 6)
+AND orderID <> 'Order ID';
 
 SELECT Product
 ,ROUND(SUM(Quantity) * price, 2) AS Revenue

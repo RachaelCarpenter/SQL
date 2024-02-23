@@ -1,5 +1,4 @@
-querying a database with multiple tables in it to quantify statistics about customer and order data. 
-
+-- In the following queries, I'm utilizing a database with multiple tables to quantify statistics about customer and order data. 
 
 SELECT DISTINCT Product, Price
 FROM BIT_DB.JanSales
@@ -42,10 +41,11 @@ AND LENGTH(orderID) = 6
 AND orderID <> 'Order ID'
 GROUP BY Product;
 
-SELECT COUNT(DISTINCT(acctnum)), AVG(Quantity * price)
-FROM customers
-JOIN FebSales
-ON customers.order_id = FebSales.orderID
-WHERE Quantity > 2
-AND LENGTH(orderID) = 6
-AND orderID <> 'Order ID';
+SELECT Count(DISTINCT Cust.acctnum)             AS cust_count, 
+       Round(Avg(quantity * price), 2) AS avg_amt_spent 
+FROM   bit_db.febsales Feb 
+       JOIN bit_db.customers Cust 
+         ON FEB.orderid = Cust.order_id 
+WHERE  Feb.quantity > 2 
+       AND Length(orderid) = 6 
+       AND orderid <> 'Order ID'; 

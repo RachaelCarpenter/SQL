@@ -113,13 +113,13 @@ VALUES      ( 1,
 SELECT Round(Sum(price), 2) AS inventory_valuation 
 FROM   superstore; 
 
--- Shows inventory valuation by category.*/
+-- Shows inventory valuation by category.
 SELECT category, 
        Round(Sum(price), 2) AS inventory_valuation 
 FROM   superstore 
 GROUP  BY category; 
 
--- Shows the average ratings in the Electronics category from highest to lowest in relation to price.*/
+-- Shows the average ratings in the Electronics category from highest to lowest in relation to price.
 SELECT item_name, 
        average_rating, 
        price 
@@ -127,7 +127,7 @@ FROM   superstore
 WHERE  category = 'Electronics' 
 ORDER  BY average_rating DESC; 
 
--- Shows the item with the most in stock.*/
+-- Shows the item with the most in stock.
 SELECT item_name, 
        Max(stock_quantity) AS most_in_stock 
 FROM   superstore; 

@@ -1,4 +1,4 @@
-/*This analysis utilizes the following superstore data:*/
+-- This analysis utilizes the following superstore data:
 
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,

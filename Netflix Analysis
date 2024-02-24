@@ -37,11 +37,11 @@ INSERT INTO netflix_people
     ("show_id", "director", "cast")
 VALUES
     ('s1', 'Kirsten Johnson', NULL),
-    ('s2', NULL, 'Ama Qamata| Khosi Ngema| Gail Mabalane| Thabang Molaba| Dillon Windvogel| Natasha Thahane| Arno Greeff| Xolile Tshabalala| Getmore Sithole| Cindy Mahlangu| Ryle De Morny| Greteli Fincham| Sello Maake Ka-Ncube| Odwa Gwanya| Mekaila Mathys| Sandi Schultz| Duane Williams| Shamilla Miller| Patrick Mofokeng'),
-    ('s3', 'Julien Leclercq', 'Sami Bouajila| Tracy Gotoas| Samuel Jouy| Nabiha Akkari| Sofia Lesaffre| Salim Kechiouche| Noureddine Farihi| Geert Van Rampelberg| Bakary Diombera'),
+    ('s2', NULL, 'Ama Qamata | Khosi Ngema | Gail Mabalane | Thabang Molaba | Dillon Windvogel | Natasha Thahane | Arno Greeff | Xolile Tshabalala | Getmore Sithole | Cindy Mahlangu | Ryle De Morny | Greteli Fincham | Sello Maake Ka-Ncube | Odwa Gwanya | Mekaila Mathys | Sandi Schultz | Duane Williams | Shamilla Miller | Patrick Mofokeng'),
+    ('s3', 'Julien Leclercq', 'Sami Bouajila | Tracy Gotoas | Samuel Jouy | Nabiha Akkari | Sofia Lesaffre | Salim Kechiouche | Noureddine Farihi | Geert Van Rampelberg | Bakary Diombera'),
     ('s4', NULL, NULL),
-    ('s5', NULL, 'Mayur More| Jitendra Kumar| Ranjan Raj| Alam Khan| Ahsaas Channa| Revathi Pillai| Urvi Singh| Arun Kumar'),
-    ('s6', 'Mike Flanagan', 'Kate Siegel| Zach Gilford| Hamish Linklater| Henry Thomas| Kristin Lehman| Samantha Sloyan| Igby Rigney| Rahul Kohli| Annarah Cymone| Annabeth Gish| Alex Essoe| Rahul Abburi| Matt Biedel| Michael Trucco| Crystal Balint| Louis Oliver'),
+    ('s5', NULL, 'Mayur More | Jitendra Kumar | Ranjan Raj | Alam Khan | Ahsaas Channa | Revathi Pillai | Urvi Singh | Arun Kumar'),
+    ('s6', 'Mike Flanagan', 'Kate Siegel | Zach Gilford | Hamish Linklater | Henry Thomas | Kristin Lehman | Samantha Sloyan | Igby Rigney | Rahul Kohli | Annarah Cymone | Annabeth Gish | Alex Essoe | Rahul Abburi | Matt Biedel | Michael Trucco | Crystal Balint | Louis Oliver'),
     ('s7', 'Robert Cullen| Josa Luis Ucha', 'Vanessa Hudgens| Kimiko Glenn| James Marsden| Sofia Carson| Liza Koshy| Ken Jeong| Elizabeth Perkins| Jane Krakowski| Michael McKean| Phil LaMarr'),
     ('s8', 'Haile Gerima', 'Kofi Ghanaba| Oyafunmike Ogunlano| Alexandra Duah| Nick Medley| Mutabaruka| Afemo Omilami| Reggie Carter| Mzuri'),
     ('s9', 'Andy Devonshire', 'Mel Giedroyc| Sue Perkins| Mary Berry| Paul Hollywood'),
@@ -59,20 +59,20 @@ VALUES
     ;
 
 
-/*Shows how many movie titles there are in the database.*/
+-- Shows how many movie titles there are in the database.
 SELECT COUNT(*)
 FROM "netflix_titles_info"
 
-/*Shows the most recent batch of TV shows and/or movies added to the database.*/
+-- Shows the most recent batch of TV shows and/or movies added to the database.*/
 SELECT MAX(DATE(date_added))
 FROM "netflix_titles_info";
 
-/*Lists all the movies and TV shows in alphabetical order.*/
+-- Lists all the movies and TV shows in alphabetical order.*/
 SELECT title
 FROM "netflix_titles_info"
 ORDER BY title;
 
-/*Shows who the director is for the movie, The Starling.*/
+-- Shows who the director is for the movie, The Starling.*/
 SELECT director, title
 FROM "netflix_titles_info" titles
 JOIN "netflix_people" people
@@ -80,7 +80,7 @@ ON titles.show_id = people.show_id
 WHERE title = 'The Starling';
 WHERE type = 'Movie';
 
-/*Shows the oldest movie in the database and what year it was made.*/
+-- Shows the oldest movie in the database and what year it was made.*/
 SELECT title, release_year
 FROM "netflix_titles_info" 
 ORDER BY release_year

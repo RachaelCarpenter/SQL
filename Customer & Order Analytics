@@ -1,46 +1,7 @@
--- In the following queries, I'm utilizing a database with multiple tables to quantify statistics about customer and order data. 
+-- In the following queries, I'm utilizing a database with multiple tables to quantify statistics regarding customer and order data. 
 
-SELECT DISTINCT Product, Price
-FROM BIT_DB.JanSales
-WHERE LENGTH(orderID) = 6
-AND orderID <> 'Order ID'
-ORDER BY Price
-LIMIT 1;
 
-SELECT COUNT(*)
-FROM BIT_DB.JanSales
-WHERE LENGTH(orderID) = 6
-AND orderID <> 'Order ID';
-
-SELECT COUNT(*)
-FROM BIT_DB.JanSales
-WHERE Product = 'iPhone'
-AND LENGTH(orderID) = 6
-AND orderID <> 'Order ID';
-
-SELECT DISTINCT acctnum
-FROM BIT_DB.customers
-JOIN BIT_DB.FebSales
-ON customers.order_id = FebSales.orderID
-WHERE LENGTH(orderID) = 6
-AND orderID <> 'Order ID';
-
-SELECT Product
-,ROUND(SUM(Quantity) * price, 2) AS Revenue
-FROM BIT_DB.JanSales 
-WHERE LENGTH(orderID) = 6
-AND orderID <> 'Order ID'
-GROUP BY Product;
-
-SELECT Product
-,SUM(Quantity)
-,SUM(Quantity) * price AS Revenue
-FROM BIT_DB.FebSales 
-WHERE location = '548 Lincoln St, Seattle, WA 98101'
-AND LENGTH(orderID) = 6
-AND orderID <> 'Order ID'
-GROUP BY Product;
-
+-- Shows how many customers ordered more than two products at a time in February, and what the average amount spent for those customers was.
 SELECT Count(DISTINCT Cust.acctnum)             AS cust_count, 
        Round(Avg(quantity * price), 2) AS avg_amt_spent 
 FROM   bit_db.febsales Feb 
@@ -49,3 +10,32 @@ FROM   bit_db.febsales Feb
 WHERE  Feb.quantity > 2 
        AND Length(orderid) = 6 
        AND orderid <> 'Order ID'; 
+
+-- Cleans order_id column and shows how many orders were placed in January.
+SELECT Count(orderid) 
+FROM   bit_db.jansales 
+WHERE  Length(orderid) = 6 
+       AND orderid <> 'Order ID'; 
+
+-- Builds on the previous query and shows how many of those orders were for iPhone(s).
+SELECT Count(orderid) AS count_iphones 
+FROM   bit_db.jansales 
+WHERE  product = 'iPhone' 
+       AND Length(orderid) = 6 
+       AND orderid <> 'Order ID'; 
+
+-- Selects the customer account numbers for all the orders that were placed in February.
+SELECT DISTINCT acctnum 
+FROM   bit_db.customers cust 
+       JOIN bit_db.febsales feb 
+         ON cust.order_id = feb.orderid 
+WHERE  Length(orderid) = 6 
+       AND orderid <> 'Order ID'; 
+
+-- Shows the total revenue for each product sold in January.
+SELECT product, 
+       Round(( Sum(quantity) * price ), 2) AS revenue 
+FROM   bit_db.jansales 
+WHERE  Length(orderid) = 6 
+       AND orderid <> 'Order ID' 
+GROUP  BY product; 

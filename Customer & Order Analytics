@@ -17,14 +17,14 @@ FROM   bit_db.jansales
 WHERE  Length(orderid) = 6 
        AND orderid <> 'Order ID'; 
 
--- Builds on the previous query and shows how many of those orders were for iPhone(s).
+-- Builds on the previous query by showing how many of those orders were for iPhones.
 SELECT Count(orderid) AS count_iphones 
 FROM   bit_db.jansales 
 WHERE  product = 'iPhone' 
        AND Length(orderid) = 6 
        AND orderid <> 'Order ID'; 
 
--- Selects the customer account numbers for all the orders that were placed in February.
+-- Lists the customer account numbers for all the orders placed in February.
 SELECT DISTINCT acctnum 
 FROM   bit_db.customers cust 
        JOIN bit_db.febsales feb 

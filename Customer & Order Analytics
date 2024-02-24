@@ -34,8 +34,8 @@ WHERE  Length(orderid) = 6
 
 -- Shows the total revenue for each product sold in January.
 SELECT product, 
-       Round(( Sum(quantity) * price ), 2) AS revenue 
+       Round(Sum(quantity * price), 2) AS revenue 
 FROM   bit_db.jansales 
 WHERE  Length(orderid) = 6 
        AND orderid <> 'Order ID' 
-GROUP  BY product; 
+GROUP  BY product;

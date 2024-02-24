@@ -1,4 +1,4 @@
-/*This analysis utilizes the following data from The Last of Us:*/
+-- This analysis utilizes the following data from The Last of Us:
 
 CREATE TABLE characters (
     id INTEGER PRIMARY KEY,
@@ -58,26 +58,29 @@ VALUES
     (8, "Merle Dandridge", 48, "Female", 68, 6);
 
 
-/*Shows the actors that have voiced a character in the game, and played a character in the show. Lists the voiced character and acted character.*/
-SELECT actors.name, a.name AS voiced_character, b.name AS acted_character
-FROM voice_actors
-JOIN actors
-ON actors.id = voice_actors.actor_id
-JOIN characters a
-ON voice_actors.character_id = a.id
-JOIN characters b
-ON actors.character_id = b.id;
+-- Shows the actors that have voiced a character in the game, and played a character in the show. Lists the voiced character and acted character.
+SELECT actors.NAME, 
+       a.NAME AS voiced_character, 
+       b.NAME AS acted_character 
+FROM   voice_actors 
+       JOIN actors 
+         ON actors.id = voice_actors.actor_id 
+       JOIN characters a 
+         ON voice_actors.character_id = a.id 
+       JOIN characters b 
+         ON actors.character_id = b.id; 
 
-/*Shows characters and their partners' names.*/
-SELECT a.name, b.name AS partner_name
-FROM characters a
-JOIN characters b
-ON a.partner_id = b.id;
+-- Shows characters and their partners' names.
+SELECT a.NAME, 
+       b.NAME AS partner_name 
+FROM   characters a 
+       JOIN characters b 
+         ON a.partner_id = b.id; 
 
-/*Shows actors that are within three years of their character's age.*/
-SELECT actors.name
-FROM actors
-JOIN characters
-ON actors.character_id = characters.id
-WHERE actors.age <= (characters.age + 3)
-AND actors.age >= (characters.age - 3);
+-- Shows actors that are within three years of their character's age.
+SELECT actors.NAME 
+FROM   actors 
+       JOIN characters 
+         ON actors.character_id = characters.id 
+WHERE  actors.age <= ( characters.age + 3 ) 
+       AND actors.age >= ( characters.age - 3 ); 

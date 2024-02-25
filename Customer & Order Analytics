@@ -44,7 +44,7 @@ GROUP  BY product;
 SELECT product, 
        Sum(quantity)         AS total_product_sold, 
        Sum(quantity * price) AS revenue 
-FROM   febsales 
+FROM   bit_db.febsales 
 WHERE  location = '548 Lincoln St, Seattle, WA 98101' 
        AND Length(orderid) = 6 
        AND orderid <> 'Order ID' 
@@ -53,7 +53,7 @@ GROUP  BY product;
 -- Shows the price of the cheapest product sold in January.
 SELECT product, 
        price 
-FROM   jansales 
+FROM   bit_db.jansales 
 WHERE  Length(orderid) = 6 
        AND orderid <> 'Order ID' 
 ORDER  BY price 
@@ -62,8 +62,34 @@ LIMIT  1;
 -- Lists all products sold in Los Angeles in February and how many of each were sold. 
 SELECT product, 
        Sum(quantity) AS total_quantity 
-FROM   febsales 
+FROM   bit_db.febsales 
 WHERE  location LIKE '%Los Angeles%' 
        AND Length(orderid) = 6 
        AND orderid <> 'Order ID' 
 GROUP  BY product;
+
+-- Shows locations in New York that received at least 3 orders in January, and how many orders they received.
+SELECT location, 
+       Count(orderid) AS total_orders 
+FROM   bit_db.jansales 
+WHERE  location LIKE '%NY%' 
+       AND Length(orderid) = 6 
+       AND orderid <> 'Order ID' 
+GROUP  BY location 
+HAVING total_orders >= 3; 
+
+-- Shows how many of each type of headphone were sold in February.
+SELECT product, 
+       Sum(quantity) AS total_sold 
+FROM   bit_db.febsales 
+WHERE  product LIKE '%Headphones%' 
+       AND Length(orderid) = 6 
+       AND orderid <> 'Order ID' 
+GROUP  BY product;
+
+-- Shows the average amount in February across all accounts.
+SELECT Round(( Sum(quantity * price) / Count(DISTINCT acctnum) ), 2) AS 
+       avg_amnt_spent 
+FROM   bit_db.febsales feb 
+       JOIN bit_db.customers cust 
+         ON feb.orderid = cust.order_id; 

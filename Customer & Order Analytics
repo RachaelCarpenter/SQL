@@ -18,7 +18,7 @@ WHERE  Length(orderid) = 6
        AND orderid <> 'Order ID'; 
 
 -- Builds on the previous query by showing how many of those orders were for iPhones.
-SELECT Count(orderid) AS count_iphones 
+SELECT Count(orderid) AS iphone_count
 FROM   bit_db.jansales 
 WHERE  product = 'iPhone' 
        AND Length(orderid) = 6 

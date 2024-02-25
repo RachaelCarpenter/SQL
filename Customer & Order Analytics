@@ -25,7 +25,7 @@ WHERE  product = 'iPhone'
        AND orderid <> 'Order ID'; 
 
 -- Lists the customer account numbers for all the orders placed in February.
-SELECT DISTINCT feb_acctnums
+SELECT DISTINCT acctnum
 FROM   bit_db.customers cust 
        JOIN bit_db.febsales feb 
          ON cust.order_id = feb.orderid 

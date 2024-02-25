@@ -68,7 +68,7 @@ WHERE  location LIKE '%Los Angeles%'
        AND orderid <> 'Order ID' 
 GROUP  BY product;
 
--- Shows locations in New York that received at least 3 orders in January, and how many orders they received.
+-- Shows locations in New York that received at least three orders in January, and how many orders they received.
 SELECT location, 
        Count(orderid) AS total_orders 
 FROM   bit_db.jansales 
@@ -93,22 +93,23 @@ SELECT Round(( Sum(quantity * price) / Count(DISTINCT acctnum) ), 2) AS
 FROM   bit_db.febsales feb 
        JOIN bit_db.customers cust 
          ON feb.orderid = cust.order_id 
-            AND Length(orderid) = 6 
-            AND orderid <> 'Order ID'; 
+WHERE  Length(orderid) = 6 
+       AND orderid <> 'Order ID'; 
 
 -- Shows the average quantity purchased in February per account.
 SELECT Round(( Sum(quantity) / Count(DISTINCT acctnum) ), 0) AS avg_quantity 
 FROM   bit_db.febsales feb 
        JOIN bit_db.customers cust 
          ON feb.orderid = cust.order_id 
-            AND Length(orderid) = 6 
-            AND orderid <> 'Order ID'; 
+WHERE  Length(orderid) = 6 
+       AND orderid <> 'Order ID'; 
 
 -- Shows which product brought in the most revenue in January and what the total revenue was.
-SELECT   product, 
-         Sum(quantity * price) AS revenue 
-FROM     bit_db.jansales 
-AND      length(orderid) = 6 
-AND      orderid <> 'Order ID' 
-GROUP BY product 
-ORDER BY revenue DESC limit 1;
+SELECT product, 
+       Sum(quantity * price) AS revenue 
+FROM   bit_db.jansales 
+WHERE  Length(orderid) = 6 
+       AND orderid <> 'Order ID' 
+GROUP  BY product 
+ORDER  BY revenue DESC 
+LIMIT  1;

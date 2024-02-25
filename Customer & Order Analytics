@@ -1,4 +1,4 @@
--- In the following queries, I'm utilizing a database with multiple tables to quantify statistics regarding customer and order data. 
+-- In the following queries, I'm utilizing a database with multiple tables to quantify statistics regarding customer and order data after cleaning the orderID column. 
 
 
 -- Shows how many customers ordered more than two products at a time in February, and what the average amount spent for those customers was.
@@ -11,7 +11,7 @@ WHERE  Feb.quantity > 2
        AND Length(orderid) = 6 
        AND orderid <> 'Order ID';  
 
--- Cleans order_id column and shows how many orders were placed in January.
+-- Shows how many orders were placed in January.
 SELECT Count(orderid) AS order_count 
 FROM   bit_db.jansales 
 WHERE  Length(orderid) = 6 

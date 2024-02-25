@@ -2,17 +2,17 @@
 
 
 -- Shows how many customers ordered more than two products at a time in February, and what the average amount spent for those customers was.
-SELECT Count(DISTINCT Cust.acctnum)             AS cust_count, 
+SELECT Count(DISTINCT Cust.acctnum)    AS cust_count, 
        Round(Avg(quantity * price), 2) AS avg_amt_spent 
 FROM   bit_db.febsales Feb 
        JOIN bit_db.customers Cust 
          ON FEB.orderid = Cust.order_id 
 WHERE  Feb.quantity > 2 
        AND Length(orderid) = 6 
-       AND orderid <> 'Order ID'; 
+       AND orderid <> 'Order ID';  
 
 -- Cleans order_id column and shows how many orders were placed in January.
-SELECT Count(orderid) 
+SELECT Count(orderid) AS order_count 
 FROM   bit_db.jansales 
 WHERE  Length(orderid) = 6 
        AND orderid <> 'Order ID'; 
@@ -34,8 +34,27 @@ WHERE  Length(orderid) = 6
 
 -- Shows the total revenue for each product sold in January.
 SELECT product, 
-       Round(Sum(quantity * price), 2) AS Revenue 
+       Round(Sum(quantity * price), 2) AS revenue 
 FROM   bit_db.jansales 
 WHERE  Length(orderid) = 6 
        AND orderid <> 'Order ID' 
-GROUP  BY product, price;
+GROUP  BY product; 
+
+-- Shows products that were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what the total revenue was.
+SELECT product, 
+       Sum(quantity)         AS total_products_sold, 
+       Sum(quantity * price) AS revenue 
+FROM   febsales 
+WHERE  location = '548 Lincoln St, Seattle, WA 98101' 
+       AND Length(orderid) = 6 
+       AND orderid <> 'Order ID' 
+GROUP  BY product; 
+
+-- Shows the price of the cheapest product sold in January.
+SELECT product, 
+       price 
+FROM   jansales 
+WHERE  Length(orderid) = 6 
+       AND orderid <> 'Order ID' 
+ORDER  BY price 
+LIMIT  1; 

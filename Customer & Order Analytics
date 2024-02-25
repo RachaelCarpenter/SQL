@@ -93,3 +93,9 @@ SELECT Round(( Sum(quantity * price) / Count(DISTINCT acctnum) ), 2) AS
 FROM   bit_db.febsales feb 
        JOIN bit_db.customers cust 
          ON feb.orderid = cust.order_id; 
+
+-- Shows the average quantity purchased in February per account.
+SELECT Round(( Sum(quantity) / Count(DISTINCT acctnum) ), 0) AS avg_quantity 
+FROM   bit_db.febsales feb 
+       JOIN bit_db.customers cust 
+         ON feb.orderid = cust.order_id; 

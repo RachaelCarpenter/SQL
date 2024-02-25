@@ -304,7 +304,7 @@ SELECT title
 FROM   "netflix_titles_info" 
 ORDER  BY title; 
 
--- Shows who the director is for the movie, The Starling.
+-- Shows who the director is for the movie The Starling.
 SELECT director, 
        title 
 FROM   "netflix_titles_info" titles 

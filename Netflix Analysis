@@ -292,11 +292,11 @@ VALUES      ('s1',
 
 
 -- Shows how many movie titles there are in the database.
-SELECT Count(*) 
+SELECT Count(*) AS movie_count
 FROM   "netflix_titles_info"; 
 
 -- Shows the most recent batch of TV shows and/or movies added to the database.
-SELECT Max(Date(date_added)) 
+SELECT Max(Date(date_added)) AS most_recent
 FROM   "netflix_titles_info"; 
 
 -- Lists all the movies and TV shows in alphabetical order.

@@ -87,7 +87,7 @@ WHERE  product LIKE '%Headphones%'
        AND orderid <> 'Order ID' 
 GROUP  BY product;
 
--- Shows the average amount in February across all accounts.
+-- Shows the average amount spent in February per account.
 SELECT Round(( Sum(quantity * price) / Count(DISTINCT acctnum) ), 2) AS 
        avg_amnt_spent 
 FROM   bit_db.febsales feb 

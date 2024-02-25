@@ -188,7 +188,7 @@ VALUES      (1,
              6); 
 
 
--- Shows the actors that have voiced a character in the game, and played a character in the show. Lists the voiced character and acted character.
+-- Shows the actors that have voiced a character in the game and played a character in the show. Lists the voiced character and acted character.
 SELECT actors.name, 
        a.name AS voiced_character, 
        b.name AS acted_character 

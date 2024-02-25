@@ -42,7 +42,7 @@ GROUP  BY product;
 
 -- Shows products that were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what the total revenue was.
 SELECT product, 
-       Sum(quantity)         AS total_products_sold, 
+       Sum(quantity)         AS total_product_sold, 
        Sum(quantity * price) AS revenue 
 FROM   febsales 
 WHERE  location = '548 Lincoln St, Seattle, WA 98101' 

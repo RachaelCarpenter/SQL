@@ -64,4 +64,6 @@ SELECT product,
        Sum(quantity) AS total_quantity 
 FROM   febsales 
 WHERE  location LIKE '%Los Angeles%' 
-GROUP  BY product 
+       AND Length(orderid) = 6 
+       AND orderid <> 'Order ID' 
+GROUP  BY product;

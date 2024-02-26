@@ -26,7 +26,7 @@ CREATE TABLE bit_db.spotifydata
 -- Inserted the spotify_top50_2021.csv file downloaded from Kaggle into the table using SQLiteStudio.
 
 
--- Question #1
+-- What songs would the ultimate workout playlist consist of?
 
 -- Question #2
 

@@ -1,4 +1,4 @@
--- This analysis utilizes the following faux Netflix data:
+-- This analysis using PostgreSQL utilizes the following Netflix data:
 
 CREATE TABLE netflix_titles_info 
   ( 
@@ -308,8 +308,8 @@ ORDER  BY title;
 SELECT director, 
        title 
 FROM   "netflix_titles_info" titles 
-       JOIN "netflix_people" people 
-         ON titles.show_id = people.show_id 
+       LEFT JOIN "netflix_people" people 
+              ON titles.show_id = people.show_id 
 WHERE  title = 'The Starling' 
        AND type = 'Movie'; 
 

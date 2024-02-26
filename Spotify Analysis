@@ -24,7 +24,7 @@ CREATE TABLE bit_db.spotifydata
      time_signature   INTEGER NOT NULL 
   ) 
 
--- Inserted the spotify_top50_2021.csv file downloaded from Kaggle.
+-- Inserted the spotify_top50_2021.csv file downloaded from Kaggle into the table using SQLiteStudio.
 
 
 -- Question #1

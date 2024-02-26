@@ -1,6 +1,5 @@
 -- In the following queries, I'm utilizing a database with multiple tables to quantify statistics regarding customer and order data after cleaning the orderID column. 
 
-
 -- Shows how many customers ordered more than two products at a time in February, and what the average amount spent for those customers was.
 SELECT Count(DISTINCT Cust.acctnum)    AS cust_count, 
        Round(Avg(quantity * price), 2) AS avg_amt_spent 

@@ -4,11 +4,11 @@
 SELECT Count(DISTINCT Cust.acctnum)    AS cust_count, 
        Round(Avg(quantity * price), 2) AS avg_amt_spent 
 FROM   bit_db.febsales Feb 
-       JOIN bit_db.customers Cust 
-         ON FEB.orderid = Cust.order_id 
+       LEFT JOIN bit_db.customers Cust 
+              ON FEB.orderid = Cust.order_id 
 WHERE  Feb.quantity > 2 
        AND Length(orderid) = 6 
-       AND orderid <> 'Order ID';  
+       AND orderid <> 'Order ID'; 
 
 -- Shows how many orders were placed in January.
 SELECT Count(orderid) AS order_count 
@@ -90,16 +90,16 @@ GROUP  BY product;
 SELECT Round(( Sum(quantity * price) / Count(DISTINCT acctnum) ), 2) AS 
        avg_amnt_spent 
 FROM   bit_db.febsales feb 
-       JOIN bit_db.customers cust 
-         ON feb.orderid = cust.order_id 
+       LEFT JOIN bit_db.customers cust 
+              ON feb.orderid = cust.order_id 
 WHERE  Length(orderid) = 6 
        AND orderid <> 'Order ID'; 
 
 -- Shows the average quantity purchased in February per account.
 SELECT Round(( Sum(quantity) / Count(DISTINCT acctnum) ), 0) AS avg_quantity 
 FROM   bit_db.febsales feb 
-       JOIN bit_db.customers cust 
-         ON feb.orderid = cust.order_id 
+       LEFT JOIN bit_db.customers cust 
+              ON feb.orderid = cust.order_id 
 WHERE  Length(orderid) = 6 
        AND orderid <> 'Order ID'; 
 

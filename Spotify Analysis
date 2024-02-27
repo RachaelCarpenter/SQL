@@ -26,11 +26,23 @@ CREATE TABLE bit_db.spotifydata
 -- Inserted the spotify_top50_2021.csv file downloaded from Kaggle into the table using SQLiteStudio.
 
 
--- What songs would the ultimate workout playlist consist of?
+-- What songs would the ultimate workout playlist consist of that is more on the instrumental side?
 
 -- Who is the best artist to hear live?
 
--- What songs would be the most likely to reduce anxiety and uplift mood?
+-- What song is the most likely to uplift mood?
+SELECT artist_name, 
+       track_name 
+FROM   bit_db.spotifydata 
+WHERE  song_mode = 1 
+       AND song_key = 6; 
+
+-- What is each artist's loudest track?
+SELECT artist_name, 
+       track_name AS loudest_track, 
+       loudness 
+FROM   bit_db.spotifydata 
+GROUP  BY artist_name;
 
 -- What songs are similar to the top three songs with the highest average danceability and energy?
 SELECT a.track_name, 

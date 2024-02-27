@@ -1,4 +1,4 @@
--- This analysis using PostgreSQL utilizes the following Netflix data:
+-- This PostgreSQL analysis utilizes the following Netflix data:
 
 CREATE TABLE netflix_titles_info 
   ( 

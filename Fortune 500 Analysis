@@ -368,7 +368,7 @@ VALUES      ('Apple Inc.',
              5.3);
 
 
--- Answers what companies have healthcare benefits and maternity leave of 12 weeks or longer.
+-- Answers what companies have healthcare benefits and maternity leave of 12 weeks or longer, suggesting they may be good fits for expectant mothers.
 SELECT company_name, 
        maternity_leave_weeks 
 FROM   fortune_companies 
@@ -391,7 +391,7 @@ SELECT company_name,
          WHEN revenue >= 500 
                OR employees >= 1000000 THEN 'large' 
          WHEN revenue >= 250 
-               OR employees >= 500000 THEN 'mid-size' 
+               OR employees >= 500000 THEN 'midsize' 
          ELSE 'small' 
        END AS company_size 
 FROM   fortune_companies; 

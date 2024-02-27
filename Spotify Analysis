@@ -32,7 +32,7 @@ CREATE TABLE bit_db.spotifydata
 
 -- What songs would be the most likely to reduce anxiety and uplift mood?
 
--- What songs are similar to the top three songs with the highest danceability and energy?
+-- What songs are similar to the top three songs with the highest average danceability and energy?
 SELECT a.track_name, 
        Nullif(b.track_name, a.track_name) AS similar_track 
 FROM   spotifydata a 
@@ -44,6 +44,5 @@ FROM   spotifydata a
                                                     a.energy + 0.5 ) 
 WHERE  a.track_name IN (SELECT track_name 
                         FROM   bit_db.spotifydata 
-                        ORDER  BY danceability, 
-                                  energy 
+                        ORDER  BY ( danceability + energy ) / 2 
                         LIMIT  3); 

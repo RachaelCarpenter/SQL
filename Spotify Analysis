@@ -28,10 +28,22 @@ CREATE TABLE bit_db.spotifydata
 
 -- What songs would the ultimate workout playlist consist of?
 
--- Question #2
+-- Who is the best artist to hear live?
 
--- Question #3
+-- What songs would be the most likely to reduce anxiety and uplift mood?
 
--- Question #4
-
--- Question #5
+-- What songs are similar to the top three songs with the highest danceability and energy?
+SELECT a.track_name, 
+       Nullif(b.track_name, a.track_name) AS similar_track 
+FROM   spotifydata a 
+       LEFT JOIN spotifydata b 
+              ON a.danceability = b.danceability BETWEEN ( a.danceability - 0.5 
+                                                         ) AND ( 
+                                                         a.danceability + 0.5 ) 
+                                            BETWEEN ( a.energy - 0.5 ) AND ( 
+                                                    a.energy + 0.5 ) 
+WHERE  a.track_name IN (SELECT track_name 
+                        FROM   bit_db.spotifydata 
+                        ORDER  BY danceability, 
+                                  energy 
+                        LIMIT  3); 

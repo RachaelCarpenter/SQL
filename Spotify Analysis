@@ -1,4 +1,4 @@
--- For this project, I downloaded Spotify data from Kaggle, created a table to insert the data into, and analyzed the data by asking the questions listed below.
+-- For this project, I downloaded Spotify data from Kaggle, created a table to insert the data into, and analyzed the data by asking the questions and providing the insights listed below.
 
 -- Created the table using the following:
 CREATE TABLE bit_db.spotifydata 

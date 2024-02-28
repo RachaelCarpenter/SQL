@@ -30,7 +30,7 @@ CREATE TABLE bit_db.spotifydata
 
 -- Who is the best artist to hear live?
 
--- What song is the most likely to uplift mood?
+-- What song is the most likely to uplift mood? According to Rita Steblin in History of Key Characteristics in the Eighteenth and Early Nineteenth Centuries, F# major is associated with triumph over difficulty.
 SELECT artist_name, 
        track_name 
 FROM   bit_db.spotifydata 

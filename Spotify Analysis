@@ -26,11 +26,17 @@ CREATE TABLE bit_db.spotifydata
 -- Inserted the spotify_top50_2021.csv file downloaded from Kaggle into the table using SQLiteStudio.
 
 
--- What songs would the ultimate workout playlist consist of that is more on the instrumental side?
+-- Orders artists by average acousticness and lists the artist's tracks.
+SELECT artist_name, 
+       track_name, 
+       acousticness, 
+       Avg(acousticness) 
+         OVER ( 
+           partition BY artist_name) AS avg_acousticness 
+FROM   bit_db.spotifydata 
+ORDER  BY avg_acousticness DESC; 
 
--- Who is the best artist to hear live?
-
--- What song is the most likely to uplift mood? According to Rita Steblin in History of Key Characteristics in the Eighteenth and Early Nineteenth Centuries, F# major is associated with triumph over difficulty, therefore, song_key = 6.
+-- What track is the most likely to uplift mood? According to Rita Steblin in History of Key Characteristics in the Eighteenth and Early Nineteenth Centuries, F# major is associated with triumph over difficulty, therefore, song_key = 6.
 SELECT artist_name, 
        track_name 
 FROM   bit_db.spotifydata 
@@ -44,7 +50,7 @@ SELECT artist_name,
 FROM   bit_db.spotifydata 
 GROUP  BY artist_name;
 
--- What songs are similar to the top three songs with the highest average danceability and energy?
+-- What tracks are similar to the top three tracks with the highest average danceability and energy?
 SELECT a.track_name, 
        Nullif(b.track_name, a.track_name) AS similar_track 
 FROM   spotifydata a 

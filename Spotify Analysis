@@ -26,6 +26,34 @@ CREATE TABLE bit_db.spotifydata
 -- Inserted the spotify_top50_2021.csv file downloaded from Kaggle into the table using SQLiteStudio.
 
 
+SELECT artist_name, 
+       track_name, 
+       loudness, 
+       CASE 
+         WHEN loudness <= -8 THEN 'loudest' 
+         WHEN loudness <= -6 THEN 'louder' 
+         WHEN loudness <= -4 THEN 'loud' 
+         ELSE 'not loud' 
+       END                                     AS song_loudness_category, 
+       Round(Avg(loudness) 
+               OVER ( 
+                 partition BY artist_name), 3) AS avg_artist_loudness, 
+       CASE 
+         WHEN Avg(loudness) 
+                OVER ( 
+                  partition BY artist_name) <= -8 THEN 'loudest' 
+         WHEN Avg(loudness) 
+                OVER ( 
+                  partition BY artist_name) <= -6 THEN 'louder' 
+         WHEN Avg(loudness) 
+                OVER ( 
+                  partition BY artist_name) <= -4 THEN 'loud' 
+         ELSE 'not loud' 
+       END                                     AS artist_loudness_category 
+FROM   spotifydata 
+ORDER  BY artist_loudness_category; 
+
+
 -- Orders artists by average acousticness and lists the artist's tracks.
 SELECT artist_name, 
        track_name, 

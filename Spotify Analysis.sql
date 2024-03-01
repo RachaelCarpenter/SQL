@@ -68,7 +68,7 @@ WHERE  a.track_name IN (SELECT track_name
                         ORDER  BY ( danceability + energy ) / 2 
                         LIMIT  3);
                         
--- I couldn't remember the name of Doja Cat's most popular track, but I remembered hearing the words "Kiss Me" in it.
+-- I couldn't remember the name of Doja Cat's most popular track, but I remember hearing the words "Kiss Me" in it.
 SELECT artist_name, 
        track_name 
 FROM   bit_db.spotifydata 

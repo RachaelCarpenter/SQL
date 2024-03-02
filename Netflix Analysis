@@ -1,5 +1,34 @@
--- This PostgreSQL analysis utilizes the following Netflix data:
+/*Shows how many movies there are in the netflix_titles_info table.*/ 
+SELECT Count(*) AS movie_count 
+FROM   "netflix_titles_info"; 
 
+/*Shows when the most recent batch of TV shows and/or movies was added.*/ 
+SELECT Max(Date(date_added)) AS most_recent 
+FROM   "netflix_titles_info"; 
+
+/*Lists all the movies and TV shows in alphabetical order.*/ 
+SELECT title 
+FROM   "netflix_titles_info" 
+ORDER  BY title; 
+
+/*Shows who the director is for the movie The Starling.*/ 
+SELECT director, 
+       title 
+FROM   "netflix_titles_info" 
+       LEFT JOIN "netflix_people" 
+              ON netflix_titles_info.show_id = netflix_people.show_id 
+WHERE  title = 'The Starling' 
+       AND type = 'Movie'; 
+
+/*Shows the oldest movie in the netflix_titles_info table and what year it was released.*/ 
+SELECT title, 
+       release_year 
+FROM   "netflix_titles_info" 
+ORDER  BY release_year 
+LIMIT  1; 
+
+
+/*The above PostgreSQL queries utilize the following Netflix data:*/ 
 CREATE TABLE netflix_titles_info 
   ( 
      "show_id"      VARCHAR(5), 
@@ -220,102 +249,72 @@ VALUES      ('s1',
              NULL), 
             ('s2', 
              NULL, 
-'Ama Qamata | Khosi Ngema | Gail Mabalane | Thabang Molaba | Dillon Windvogel | Natasha Thahane | Arno Greeff | Xolile Tshabalala | Getmore Sithole | Cindy Mahlangu | Ryle De Morny | Greteli Fincham | Sello Maake Ka-Ncube | Odwa Gwanya | Mekaila Mathys | Sandi Schultz | Duane Williams | Shamilla Miller | Patrick Mofokeng' 
+'Ama Qamata | Khosi Ngema | Gail Mabalane | Thabang Molaba | Dillon Windvogel | Natasha Thahane | Arno Greeff | Xolile Tshabalala | Getmore Sithole | Cindy Mahlangu | Ryle De Morny | Greteli Fincham | Sello Maake Ka-Ncube | Odwa Gwanya | Mekaila Mathys | Sandi Schultz | Duane Williams | Shamilla Miller | Patrick Mofokeng'
 ), 
             ('s3', 
              'Julien Leclercq', 
-'Sami Bouajila | Tracy Gotoas | Samuel Jouy | Nabiha Akkari | Sofia Lesaffre | Salim Kechiouche | Noureddine Farihi | Geert Van Rampelberg | Bakary Diombera' 
+'Sami Bouajila | Tracy Gotoas | Samuel Jouy | Nabiha Akkari | Sofia Lesaffre | Salim Kechiouche | Noureddine Farihi | Geert Van Rampelberg | Bakary Diombera'
 ), 
             ('s4', 
              NULL, 
              NULL), 
             ('s5', 
              NULL, 
-'Mayur More | Jitendra Kumar | Ranjan Raj | Alam Khan | Ahsaas Channa | Revathi Pillai | Urvi Singh | Arun Kumar' 
+'Mayur More | Jitendra Kumar | Ranjan Raj | Alam Khan | Ahsaas Channa | Revathi Pillai | Urvi Singh | Arun Kumar'
 ), 
             ('s6', 
              'Mike Flanagan', 
-'Kate Siegel | Zach Gilford | Hamish Linklater | Henry Thomas | Kristin Lehman | Samantha Sloyan | Igby Rigney | Rahul Kohli | Annarah Cymone | Annabeth Gish | Alex Essoe | Rahul Abburi | Matt Biedel | Michael Trucco | Crystal Balint | Louis Oliver' 
+'Kate Siegel | Zach Gilford | Hamish Linklater | Henry Thomas | Kristin Lehman | Samantha Sloyan | Igby Rigney | Rahul Kohli | Annarah Cymone | Annabeth Gish | Alex Essoe | Rahul Abburi | Matt Biedel | Michael Trucco | Crystal Balint | Louis Oliver'
 ), 
             ('s7', 
              'Robert Cullen | Josa Luis Ucha', 
-'Vanessa Hudgens | Kimiko Glenn | James Marsden | Sofia Carson | Liza Koshy | Ken Jeong | Elizabeth Perkins | Jane Krakowski | Michael McKean | Phil LaMarr' 
+'Vanessa Hudgens | Kimiko Glenn | James Marsden | Sofia Carson | Liza Koshy | Ken Jeong | Elizabeth Perkins | Jane Krakowski | Michael McKean | Phil LaMarr'
 ), 
             ('s8', 
              'Haile Gerima', 
-'Kofi Ghanaba | Oyafunmike Ogunlano | Alexandra Duah | Nick Medley | Mutabaruka | Afemo Omilami | Reggie Carter | Mzuri' 
+'Kofi Ghanaba | Oyafunmike Ogunlano | Alexandra Duah | Nick Medley | Mutabaruka | Afemo Omilami | Reggie Carter | Mzuri'
 ), 
             ('s9', 
              'Andy Devonshire', 
              'Mel Giedroyc | Sue Perkins | Mary Berry | Paul Hollywood'), 
             ('s10', 
              'Theodore Melfi', 
-'Melissa McCarthy | Chris O''Dowd| Kevin Kline| Timothy Olyphant| Daveed Diggs| Skyler Gisondo| Laura Harrier| Rosalind Chao| Kimberly Quinn| Loretta Devine| Ravi Kapoor' 
+'Melissa McCarthy | Chris O''Dowd| Kevin Kline| Timothy Olyphant| Daveed Diggs| Skyler Gisondo| Laura Harrier| Rosalind Chao| Kimberly Quinn| Loretta Devine| Ravi Kapoor'
 ), 
             ('s11', 
              NULL, 
              NULL), 
             ('s12', 
              'Kongkiat Komesiri', 
-'Sukollawat Kanarot | Sushar Manaying | Pavarit Mongkolpisit | Sahajak Boonthanakit | Suthipongse Thatphithakkul | Bhasaworn Bawronkirati | Daweerit Chullasapya | Waratthaya Wongchayaporn | Kittiphoom Wongpentak | Abhicha Thanachanun | Nophand Boonyai | Kittipong Khamsat | Arisara Wongchalee | Jaytiya Naiwattanakul | Pantipa Arunwattanachai | Panupan Jantanawong | Kungtap Saelim | Phumphat Chartsuriyakiat | Issara Veranitinunt | Keerati Sivakuae | Panjai Sirisuwan | Supranee Charoenpol | Suda Chuenban | Visaka Banhansupavat | Pitchatorn Santinatornkul' 
+'Sukollawat Kanarot | Sushar Manaying | Pavarit Mongkolpisit | Sahajak Boonthanakit | Suthipongse Thatphithakkul | Bhasaworn Bawronkirati | Daweerit Chullasapya | Waratthaya Wongchayaporn | Kittiphoom Wongpentak | Abhicha Thanachanun | Nophand Boonyai | Kittipong Khamsat | Arisara Wongchalee | Jaytiya Naiwattanakul | Pantipa Arunwattanachai | Panupan Jantanawong | Kungtap Saelim | Phumphat Chartsuriyakiat | Issara Veranitinunt | Keerati Sivakuae | Panjai Sirisuwan | Supranee Charoenpol | Suda Chuenban | Visaka Banhansupavat | Pitchatorn Santinatornkul'
 ), 
             ('s13', 
              'Christian Schwochow', 
-'Luna Wedler | Jannis Niewohner | Milan Peschel | Edin Hasanovic | Anna Fialova | Marlon Boess | Victor Boccard | Fleur Geffrier | Aziz Dyab | Melanie Fouche | Elizaveta Maximova' 
+'Luna Wedler | Jannis Niewohner | Milan Peschel | Edin Hasanovic | Anna Fialova | Marlon Boess | Victor Boccard | Fleur Geffrier | Aziz Dyab | Melanie Fouche | Elizaveta Maximova'
 ), 
             ('s14', 
              'Bruno Garotti', 
-'Klara Castanho | Lucca Picon | Julia Gomes | Marcus Bessa | Kiria Malheiros | Fernanda Concon | Gabriel Lima | Caio Cabral | Leonardo Cidade | Jade Cardozo' 
+'Klara Castanho | Lucca Picon | Julia Gomes | Marcus Bessa | Kiria Malheiros | Fernanda Concon | Gabriel Lima | Caio Cabral | Leonardo Cidade | Jade Cardozo'
 ), 
             ('s15', 
              NULL, 
              NULL), 
             ('s16', 
              NULL, 
-'Logan Browning | Brandon P. Bell | DeRon Horton | Antoinette Robertson | John Patrick Amedori | Ashley Blaine Featherson | Marque Richardson | Giancarlo Esposito' 
+'Logan Browning | Brandon P. Bell | DeRon Horton | Antoinette Robertson | John Patrick Amedori | Ashley Blaine Featherson | Marque Richardson | Giancarlo Esposito'
 ), 
             ('s17', 
              'Pedro de Echave Garcia | Pablo AzoriÂ­n Williams', 
              NULL), 
             ('s18', 
              NULL, 
-'Luis Ernesto Franco | Camila Sodi | Sergio Goyri | Samadhi Zendejas | Eduardo Yanez | Sonya Smith | Alejandro Camacho | Azela Robinson | Uriel del Toro | Geraldine Bazan | Gabriela Roel | Marcus Ornellas' 
+'Luis Ernesto Franco | Camila Sodi | Sergio Goyri | Samadhi Zendejas | Eduardo Yanez | Sonya Smith | Alejandro Camacho | Azela Robinson | Uriel del Toro | Geraldine Bazan | Gabriela Roel | Marcus Ornellas'
 ), 
             ('s19', 
              'Adam Salky', 
-'Freida Pinto | Logan Marshall-Green | Robert John Burke | Megan Elisabeth Kelly | Sarah Minnich | Hayes Hargrove | Mark Sivertsen | Brandon Fierro | Antonio Valles | Clint Obenchain' 
+'Freida Pinto | Logan Marshall-Green | Robert John Burke | Megan Elisabeth Kelly | Sarah Minnich | Hayes Hargrove | Mark Sivertsen | Brandon Fierro | Antonio Valles | Clint Obenchain'
 ), 
             ('s20', 
              NULL, 
-'Blanca Suarez | Ivan Marcos | Oscar Casas | Adrian Lastra | Francesc Garrido | Stefan Weinert | Julia Moller | Alicia Chojnowski' 
+'Blanca Suarez | Ivan Marcos | Oscar Casas | Adrian Lastra | Francesc Garrido | Stefan Weinert | Julia Moller | Alicia Chojnowski'
 ); 
-
-
--- Shows how many movie titles there are in the database.
-SELECT Count(*) AS movie_count
-FROM   "netflix_titles_info"; 
-
--- Shows the most recent batch of TV shows and/or movies added to the database.
-SELECT Max(Date(date_added)) AS most_recent
-FROM   "netflix_titles_info"; 
-
--- Lists all the movies and TV shows in alphabetical order.
-SELECT title 
-FROM   "netflix_titles_info" 
-ORDER  BY title; 
-
--- Shows who the director is for the movie The Starling.
-SELECT director, 
-       title 
-FROM   "netflix_titles_info" titles 
-       LEFT JOIN "netflix_people" people 
-              ON titles.show_id = people.show_id 
-WHERE  title = 'The Starling' 
-       AND type = 'Movie'; 
-
--- Shows the oldest movie in the database and what year it was made.
-SELECT title, 
-       release_year 
-FROM   "netflix_titles_info" 
-ORDER  BY release_year 
-LIMIT  1; 

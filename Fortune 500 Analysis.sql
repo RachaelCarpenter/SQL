@@ -1,4 +1,4 @@
--- Answers what companies have healthcare benefits and maternity leave of 12 weeks or longer, suggesting they may be good fits for expectant mothers.
+/*Answers what companies have healthcare benefits and maternity leave of 12 weeks or longer, suggesting they may be good fits for expectant mothers.*/ 
 SELECT company_name, 
        maternity_leave_weeks 
 FROM   fortune_companies 
@@ -6,16 +6,16 @@ WHERE  healthcare_benefits = 1
        AND maternity_leave_weeks >= 12 
 ORDER  BY maternity_leave_weeks DESC; 
 
--- Suggests what industries have good work-life balance and happy employees.
+/*Suggests what industries have good work-life balance and happy employees.*/ 
 SELECT industry, 
-       Round(Avg(paid_time_off_days))  AS avg_paid_time_off_days, 
-       Round(Avg(avg_employee_tenure)) AS avg_industry_employee_tenure 
+       Round(Avg(paid_time_off_days))  AS avg_pto_days, 
+       Round(Avg(avg_employee_tenure)) AS avg_employee_tenure 
 FROM   fortune_companies 
 GROUP  BY industry 
-HAVING avg_paid_time_off_days >= 21 
-       AND avg_industry_employee_tenure >= 5; 
+HAVING avg_pto_days >= 21 
+       AND avg_employee_tenure >= 5; 
 
--- Categorizes companies as small, midsized, or large based on their revenue or number of employees.
+/*Categorizes companies as small, midsized, or large based on their revenue or number of employees.*/ 
 SELECT company_name, 
        CASE 
          WHEN revenue >= 500 
@@ -23,27 +23,26 @@ SELECT company_name,
          WHEN revenue >= 250 
                OR employees >= 500000 THEN 'midsize' 
          ELSE 'small' 
-       END AS company_size 
+       end AS company_size 
 FROM   fortune_companies; 
 
--- Shows information about the top five companies in the technology industry with the longest employee tenures.
+/*Shows information about the top five companies in the technology industry with the longest average employee tenure.*/ 
 SELECT * 
 FROM   fortune_companies 
 WHERE  industry = 'Technology' 
 ORDER  BY avg_employee_tenure DESC 
 LIMIT  5; 
 
--- Shows the top three industries with the highest revenues.
+/*Shows the top three industries with the highest revenue.*/ 
 SELECT industry, 
        Round(Avg(revenue), 2) AS avg_industry_revenue 
 FROM   fortune_companies 
 GROUP  BY industry 
 ORDER  BY avg_industry_revenue DESC 
-LIMIT  3;
+LIMIT  3; 
 
 
--- The queries above utilize the following mock Fortune 500 data:
-
+/*The queries above utilize the following mock Fortune 500 data:*/ 
 CREATE TABLE fortune_companies 
   ( 
      company_id            INTEGER PRIMARY KEY, 
@@ -409,4 +408,4 @@ VALUES      ('Apple Inc.',
              0, 
              16, 
              8, 
-             5.3);
+             5.3); 

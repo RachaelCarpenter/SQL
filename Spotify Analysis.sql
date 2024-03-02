@@ -15,7 +15,7 @@ SELECT artist_name,
 FROM   spotifydata 
 ORDER  BY artist_acousticness_avg DESC; 
        
-/*"I can't remember the name of this Doja Cat song that's been stuck in my head, but I think it has the words "kiss me" in it."*/
+/*"I can't remember the name of this Doja Cat song that's been stuck in my head, but I know it has the words "kiss me" in it."*/
 SELECT artist_name, 
        track_name 
 FROM   spotifydata 

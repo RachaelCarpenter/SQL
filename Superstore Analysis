@@ -1,5 +1,34 @@
--- This analysis utilizes the following superstore data:
+/*Shows the total inventory valuation of the superstore.*/ 
+SELECT Round(Sum(price), 2) AS inventory_valuation 
+FROM   superstore; 
 
+/*Shows inventory valuation by category.*/ 
+SELECT category, 
+       Round(Sum(price), 2) AS inventory_valuation 
+FROM   superstore 
+GROUP  BY category; 
+
+/*Shows the average ratings in the Electronics category from highest to lowest in relation to price.*/ 
+SELECT item_name, 
+       average_rating, 
+       price 
+FROM   superstore 
+WHERE  category = 'Electronics' 
+ORDER  BY average_rating DESC; 
+
+/*Shows the item with the most in stock.*/ 
+SELECT item_name, 
+       Max(stock_quantity) AS most_in_stock 
+FROM   superstore; 
+
+/*Shows how many different types of appliances are available for purchase.*/ 
+SELECT category, 
+       Count(item_name) AS different_items 
+FROM   superstore 
+WHERE  category = 'Appliances';
+
+
+/*The analysis above utilizes the following superstore data:*/ 
 CREATE TABLE superstore 
   ( 
      item_id        INTEGER PRIMARY KEY, 
@@ -107,33 +136,3 @@ VALUES      ( 1,
               24.99, 
               100, 
               4.2 ); 
-
-
--- Shows the total inventory valuation of the superstore.
-SELECT Round(Sum(price), 2) AS inventory_valuation 
-FROM   superstore; 
-
--- Shows inventory valuation by category.
-SELECT category, 
-       Round(Sum(price), 2) AS inventory_valuation 
-FROM   superstore 
-GROUP  BY category; 
-
--- Shows the average ratings in the Electronics category from highest to lowest in relation to price.
-SELECT item_name, 
-       average_rating, 
-       price 
-FROM   superstore 
-WHERE  category = 'Electronics' 
-ORDER  BY average_rating DESC; 
-
--- Shows the item with the most in stock.
-SELECT item_name, 
-       Max(stock_quantity) AS most_in_stock 
-FROM   superstore; 
-
--- Shows how many different types of appliances are available for purchase.
-SELECT category, 
-       Count(item_name) AS different_items 
-FROM   superstore 
-WHERE  category = 'Appliances'; 

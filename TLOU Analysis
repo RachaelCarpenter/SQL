@@ -25,6 +25,7 @@ FROM   actors
 WHERE  actors.age <= ( characters.age + 3 ) 
        AND actors.age >= ( characters.age - 3 ); 
 
+
 /*The analysis above utilizes the following data from The Last of Us:*/ 
 CREATE TABLE characters 
   ( 

@@ -1,9 +1,35 @@
--- This analysis utilizes the following data from The Last of Us:
+/*Shows the actors that have voiced a character in the game and played a character in the show. Lists the voiced character and acted character.*/ 
+SELECT actors.NAME, 
+       a.NAME AS voiced_character, 
+       b.NAME AS acted_character 
+FROM   voice_actors 
+       JOIN actors 
+         ON actors.id = voice_actors.actor_id 
+       JOIN characters a 
+         ON voice_actors.character_id = a.id 
+       JOIN characters b 
+         ON actors.character_id = b.id; 
 
+/*Shows characters and their partners' names.*/ 
+SELECT a.NAME, 
+       b.NAME AS partner_name 
+FROM   characters a 
+       JOIN characters b 
+         ON a.partner_id = b.id; 
+
+/*Shows actors that are within three years of their character's age.*/ 
+SELECT actors.NAME 
+FROM   actors 
+       JOIN characters 
+         ON actors.character_id = characters.id 
+WHERE  actors.age <= ( characters.age + 3 ) 
+       AND actors.age >= ( characters.age - 3 ); 
+
+/*The analysis above utilizes the following data from The Last of Us:*/ 
 CREATE TABLE characters 
   ( 
      id         INTEGER PRIMARY KEY, 
-     name       TEXT, 
+     NAME       TEXT, 
      age        INTEGER, 
      gender     TEXT, 
      partner_id INTEGER, 
@@ -13,89 +39,89 @@ CREATE TABLE characters
 
 INSERT INTO characters 
             (id, 
-             name, 
+             NAME, 
              age, 
              gender, 
              partner_id, 
              resides, 
              occupation) 
 VALUES      (1, 
-             "Ellie Williams", 
+             "ellie williams", 
              19, 
-             "Female", 
+             "female", 
              2, 
-             "Jackson, WY", 
-             "Jackson Patrolman"), 
+             "jackson, wy", 
+             "jackson patrolman"), 
             (2, 
-             "Dina", 
+             "dina", 
              20, 
-             "Female", 
+             "female", 
              1, 
-             "Jackson, WY", 
-             "Jackson Patrolman"), 
+             "jackson, wy", 
+             "jackson patrolman"), 
             (3, 
-             "Joel Miller", 
+             "joel miller", 
              56, 
-             "Male", 
+             "male", 
              4, 
-             "Jackson, WY", 
-             "Jackson Patrolman"), 
+             "jackson, wy", 
+             "jackson patrolman"), 
             (4, 
-             "Tess", 
+             "tess", 
              51, 
-             "Female", 
+             "female", 
              3, 
-             "Boston, MA", 
-             "Smuggler"), 
+             "boston, ma", 
+             "smuggler"), 
             (5, 
-             "Tommy Miller", 
+             "tommy miller", 
              50, 
-             "Male", 
+             "male", 
              11, 
-             "Jackson, WY", 
-             "Jackson Patrolman"), 
+             "jackson, wy", 
+             "jackson patrolman"), 
             (6, 
-             "Marlene", 
+             "marlene", 
              45, 
-             "Female", 
+             "female", 
              10, 
-             "Salt Lake City, UT", 
-             "Fireflies Leader"), 
+             "salt lake city, ut", 
+             "fireflies leader"), 
             (7, 
-             "Riley Abel", 
+             "riley abel", 
              16, 
-             "Female", 
+             "female", 
              1, 
-             "Boston, MA", 
-             "Firefly"), 
+             "boston, ma", 
+             "firefly"), 
             (8, 
-             "James", 
+             "james", 
              45, 
-             "Male", 
+             "male", 
              NULL, 
-             "Silver Lake, CO", 
-             "Cannibal"), 
+             "silver lake, co", 
+             "cannibal"), 
             (9, 
-             "Anna", 
+             "anna", 
              40, 
-             "Female", 
+             "female", 
              NULL, 
-             "Boston, MA", 
-             "Nurse"), 
+             "boston, ma", 
+             "nurse"), 
             (10, 
-             "Perry", 
+             "perry", 
              52, 
-             "Male", 
+             "male", 
              6, 
-             "Kansas City, MO", 
-             "Rebel Lieutenant"), 
+             "kansas city, mo", 
+             "rebel lieutenant"), 
             (11, 
-             "Maria Miller", 
+             "maria miller", 
              45, 
-             "Female", 
+             "female", 
              5, 
-             "Jackson, WY", 
-             "Jackson Leader"); 
+             "jackson, wy", 
+             "jackson leader"); 
 
 CREATE TABLE voice_actors 
   ( 
@@ -124,7 +150,7 @@ VALUES      (1,
 CREATE TABLE actors 
   ( 
      id           INTEGER PRIMARY KEY, 
-     name         TEXT, 
+     NAME         TEXT, 
      age          INTEGER, 
      gender       TEXT, 
      height       INTEGER, 
@@ -133,84 +159,56 @@ CREATE TABLE actors
 
 INSERT INTO actors 
             (id, 
-             name, 
+             NAME, 
              age, 
              gender, 
              height, 
              character_id) 
 VALUES      (1, 
-             "Bella Ramsey", 
+             "bella ramsey", 
              20, 
-             "Non-Binary", 
+             "non-binary", 
              61, 
              1), 
             (2, 
-             "Pedro Pascal", 
+             "pedro pascal", 
              48, 
-             "Male", 
+             "male", 
              71, 
              3), 
             (3, 
-             "Annie Wersching", 
+             "annie wersching", 
              45, 
-             "Female", 
+             "female", 
              67, 
              4), 
             (4, 
-             "Storm Reid", 
+             "storm reid", 
              20, 
-             "Female", 
+             "female", 
              67, 
              7), 
             (5, 
-             "Troy Baker", 
+             "troy baker", 
              47, 
-             "Male", 
+             "male", 
              75, 
              8), 
             (6, 
-             "Ashley Johnson", 
+             "ashley johnson", 
              40, 
-             "Female", 
+             "female", 
              64, 
              9), 
             (7, 
-             "Jeffrey Pierce", 
+             "jeffrey pierce", 
              52, 
-             "Male", 
+             "male", 
              72, 
              10), 
             (8, 
-             "Merle Dandridge", 
+             "merle dandridge", 
              48, 
-             "Female", 
+             "female", 
              68, 
              6); 
-
-
--- Shows the actors that have voiced a character in the game and played a character in the show. Lists the voiced character and acted character.
-SELECT actors.name, 
-       a.name AS voiced_character, 
-       b.name AS acted_character 
-FROM   voice_actors 
-       JOIN actors 
-         ON actors.id = voice_actors.actor_id 
-       JOIN characters a 
-         ON voice_actors.character_id = a.id 
-       JOIN characters b 
-         ON actors.character_id = b.id; 
-
--- Shows characters and their partners' names.
-SELECT a.name, 
-       b.name AS partner_name 
-FROM   characters a 
-       JOIN characters b 
-         ON a.partner_id = b.id; 
-
--- Shows actors that are within three years of their character's age.
-SELECT actors.name
-FROM   actors 
-       JOIN characters 
-         ON actors.character_id = characters.id 
-WHERE  actors.age <= ( characters.age + 3 ) 
-       AND actors.age >= ( characters.age - 3 );

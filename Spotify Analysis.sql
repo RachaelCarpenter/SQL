@@ -74,7 +74,7 @@ FROM   (SELECT Dense_rank()
                            ( a.danceability + a.energy ) / 2 + 0.5 ) 
 WHERE  rank <= 3; 
 
-/* Shows the artists whose average popularites are 90 or above using the CTE, avg_artist_pop.*/ 
+/* Shows the artists whose average popularities are 90 or above using the CTE, avg_artist_pop.*/ 
 WITH avg_artist_pop 
      AS (SELECT artist_name, 
                 Avg(popularity) AS avg_pop, 

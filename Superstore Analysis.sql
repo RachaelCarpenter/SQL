@@ -27,6 +27,7 @@ SELECT category,
 FROM   superstore 
 WHERE  category = 'Appliances'; 
 
+
 /*The above analysis utilizes the following superstore data:*/ 
 CREATE TABLE superstore 
   ( 

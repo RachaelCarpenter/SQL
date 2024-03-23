@@ -28,7 +28,7 @@ FROM   superstore
 WHERE  category = 'Appliances'; 
 
 
-/*The above analysis utilizes the following superstore data:*/ 
+/*The above analysis utilizes the following mock superstore data:*/ 
 CREATE TABLE superstore 
   ( 
      item_id        INTEGER PRIMARY KEY, 

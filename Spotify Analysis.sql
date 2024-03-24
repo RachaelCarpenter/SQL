@@ -81,7 +81,7 @@ WITH avg_artist_pop
                 CASE 
                   WHEN Avg(popularity) >= 90 THEN 'Top Star' 
                 END             AS tag 
-         FROM   bit_db.spotifydata 
+         FROM   spotifydata 
          GROUP  BY artist_name) 
 SELECT artist_name, 
        avg_pop, 

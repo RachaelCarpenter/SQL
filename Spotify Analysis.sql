@@ -22,7 +22,7 @@ FROM   bit_db.spotifydata
 WHERE  track_name LIKE '%kiss me%' 
        AND artist_name = 'Doja Cat'; 
 
-/* Shows each artist's loudest track, the loudness of that track, and the average loudness across all the artist's tracks, then categorizes the artist's average loudness and loudest track.*/ 
+/*Shows each artist's loudest track, the loudness of that track, and the average loudness across all the artist's tracks, then categorizes the artist's average loudness and loudest track.*/ 
 SELECT artist_name, 
        track_name, 
        Max(loudness) AS artist_loudest_track, 
